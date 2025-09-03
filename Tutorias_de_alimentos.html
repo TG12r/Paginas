@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tutorías de Alimento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fff9f5;
+      --card:#ffffff;
+      --ink:#222;
+      --muted:#6b7280;
+      --brand:#ff7aa2;
+      --brand-2:#8fd3a8;
+      --accent:#ffd166;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --radius:20px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    .container{max-width:1100px;margin:auto;padding:24px}
+    header{
+      background:linear-gradient(120deg, #ffe0e9, #f5ffd8);
+      border-bottom:2px dashed rgba(0,0,0,.05);
+      animation:fadeDown 1s ease forwards;
+    }
+    .brand{display:flex;align-items:center;gap:22px;padding:28px 0}
+    .brand-logo{
+      width:84px;height:84px;border-radius:24px;background:#fff;box-shadow:var(--shadow);
+      display:grid;place-items:center;position:relative;overflow:hidden;
+      transform:scale(0.8);opacity:0;animation:popIn 0.8s ease 0.4s forwards;
+    }
+    .brand-logo:before{content:"";position:absolute;inset:-30% -10% auto -10%;height:80%;background:var(--brand);transform:rotate(-12deg);opacity:.15}
+    .brand-logo svg{width:54px;height:54px}
+    .brand h1{font-size:40px;letter-spacing:.5px;margin:0;font-weight:800;opacity:0;animation:fadeInRight 1s ease 0.6s forwards}
+    .subtitle{margin:4px 0 0;color:var(--muted);font-weight:500;opacity:0;animation:fadeInRight 1s ease 0.8s forwards}
+
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0 24px;opacity:0;animation:fadeInUp 1s ease 1s forwards}
+    .chip{font-size:12px;background:#fff;padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.06)}
+
+    .section-title{display:flex;align-items:center;gap:10px;margin:28px 0 12px;opacity:0;animation:fadeInUp 1s ease forwards}
+    .section-title h2{margin:0;font-size:22px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;
+      transform:translateY(20px);opacity:0;animation:fadeUp 0.8s ease forwards}
+    .card:nth-child(1){animation-delay:0.2s}
+    .card:nth-child(2){animation-delay:0.4s}
+    .card:nth-child(3){animation-delay:0.6s}
+    .card:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.12)}
+    .card .thumb{height:140px;border-radius:16px;background:linear-gradient(135deg,#fff,#fff6f8);display:grid;place-items:center;border:1px solid rgba(0,0,0,.05)}
+    .card h3{margin:12px 0 4px}
+    .price-row{display:flex;align-items:center;justify-content:space-between;margin-top:6px}
+    .badge{font-size:12px;background:var(--brand-2);color:#0f5132;padding:4px 10px;border-radius:999px}
+    .cta{appearance:none;border:0;background:var(--brand);color:#fff;padding:10px 16px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
+    .cta:hover{filter:brightness(.96)}
+
+    .grid-2{display:grid;grid-template-columns:1.2fr .8fr;gap:22px;margin:34px 0}
+    .panel{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;opacity:0;transform:translateY(20px);animation:fadeUp 1s ease forwards}
+    .panel:nth-child(1){animation-delay:0.3s}
+    .panel:nth-child(2){animation-delay:0.5s}
+    .panel h4{margin:0 0 10px}
+    .pie-wrap{display:flex;gap:18px;align-items:center}
+    .legend{display:grid;gap:8px}
+    .legend .dot{width:10px;height:10px;border-radius:999px;display:inline-block;margin-right:8px}
+
+    /* Pirámide */
+    .pyramid{width:100%;height:220px;position:relative;background:#fafafa;border-radius:16px;border:1px dashed rgba(0,0,0,.06);display:grid;place-items:center}
+    .pyramid svg{width:75%;max-width:380px;opacity:0;transform:scaleY(0);animation:growUp 1.2s ease forwards 1s}
+
+    .callout{display:flex;gap:18px;align-items:center;background:linear-gradient(100deg,#fff,#f8fff2);border:1px solid rgba(0,0,0,.06);opacity:0;animation:fadeInUp 1s ease 1.5s forwards}
+    .callout p{margin:0;color:#374151}
+
+    .gallery{columns:3 280px;column-gap:18px}
+    .gallery img{width:100%;display:block;margin:0 0 18px;border-radius:18px;box-shadow:var(--shadow);opacity:0;transform:scale(0.95);animation:fadeZoom 1s ease forwards}
+    .gallery img:nth-child(1){animation-delay:0.2s}
+    .gallery img:nth-child(2){animation-delay:0.4s}
+    .gallery img:nth-child(3){animation-delay:0.6s}
+    .gallery img:nth-child(4){animation-delay:0.8s}
+    .gallery img:nth-child(5){animation-delay:1s}
+
+    footer{padding:18px 0 40px;color:var(--muted);font-size:14px;opacity:0;animation:fadeInUp 1s ease 2s forwards}
+
+    @media (max-width:860px){
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .grid-2{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .brand h1{font-size:30px}
+      .cards{grid-template-columns:1fr}
+    }
+
+    /* Keyframes */
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes popIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
+    @keyframes fadeZoom{from{opacity:0;transform:scale(0.95)}to{opacity:1;transform:scale(1)}}
+    @keyframes drawPie{to{stroke-dasharray:inherit}}
+    @keyframes growUp{to{opacity:1;transform:scaleY(1)}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
+            <path d="M8 46h48v8a4 4 0 0 1-4 4H12a4 4 0 0 1-4-4v-8Z" fill="#ffe8ef"/>
+            <path d="M8 26h48v20H8z" fill="#fff"/>
+            <path d="M8 36c6 0 6-6 12-6s6 6 12 6 6-6 12-6 6 6 12 6v10H8V36Z" fill="#ffb3c9"/>
+            <circle cx="18" cy="22" r="3" fill="#8fd3a8"/>
+            <circle cx="32" cy="22" r="3" fill="#ffd166"/>
+            <circle cx="46" cy="22" r="3" fill="#8fd3a8"/>
+          </svg>
+        </div>
+        <div>
+          <h1>Tutorías de Alimento</h1>
+          <p class="subtitle">Aprende a cocinar rico y saludable, paso a paso 🍽️</p>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip">Tipos de recetas</span>
+        <span class="chip">Equilibrar tus comidas</span>
+        <span class="chip">Consejos de salud</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="section-title">
+      <h2>Tipos de recetas</h2>
+      <span class="chip">para todos los gustos</span>
+    </div>
+    <section class="cards" aria-label="Tipos de recetas">
+      <article class="card">
+        <div class="thumb">🍰</div>
+        <h3>Pasteles</h3>
+        <p class="muted">Suaves, esponjosos y con toppings creativos.</p>
+        <div class="price-row">
+          <span class="badge">Nivel: Fácil</span>
+          <button class="cta">Ver recetas</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">🥞</div>
+        <h3>Desayunos</h3>
+        <p class="muted">Empieza tu día con energía y sabor.</p>
+        <div class="price-row">
+          <span class="badge" style="background:#ffd2a8;color:#7a3a00">Rápidos</span>
+          <button class="cta">Ver recetas</button>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">🥗</div>
+        <h3>Veganas</h3>
+        <p class="muted">Platos coloridos, nutritivos y sin crueldad.</p>
+        <div class="price-row">
+          <span class="badge">Sin lácteos</span>
+          <button class="cta">Ver recetas</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid-2">
+      <div class="panel">
+        <h4>Porcentaje alimenticio recomendado</h4>
+        <div class="pie-wrap">
+          <svg width="160" height="160" viewBox="0 0 32 32" role="img" aria-label="Gráfico circular" style="border-radius: 100%;">
+            <circle r="16" cx="16" cy="16" fill="#eee"></circle>
+            <circle r="16" cx="16" cy="16" fill="transparent" stroke="#8fd3a8" stroke-width="32" stroke-dasharray="50 50" stroke-dashoffset="25"></circle>
+            <circle r="16" cx="16" cy="16" fill="transparent" stroke="#ffd166" stroke-width="32" stroke-dasharray="25 75" stroke-dashoffset="-25"></circle>
+            <circle r="16" cx="16" cy="16" fill="transparent" stroke="#ff7aa2" stroke-width="32" stroke-dasharray="25 75" stroke-dashoffset="-50"></circle>
+          </svg>
+          <div class="legend">
+            <div><span class="dot" style="background: #8fd3a8"></span>50% vegetales y frutas</div>
+            <div><span class="dot" style="background:#ffd166"></span>25% carbohidratos</div>
+            <div><span class="dot" style="background:#ff7aa2"></span>25% proteínas</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h4>Pirámide de alimentación</h4>
+        <div class="pyramid">
+          <svg viewBox="0 0 200 160">
+            <polygon points="100,10 190,150 10,150" fill="#fff" stroke="#e5e7eb" stroke-width="2"/>
+            <line x1="30" y1="120" x2="170" y2="120" stroke="#e5e7eb" stroke-width="2"/>
+            <line x1="40" y1="95" x2="160" y2="95" stroke="#e5e7eb" stroke-width="2"/>
+            <line x1="55" y1="70" x2="145" y2="70" stroke="#e5e7eb" stroke-width="2"/>
+            <line x1="70" y1="50" x2="130" y2="50" stroke="#e5e7eb" stroke-width="2"/>
+            <text x="100" y="140" font-size="12" text-anchor="middle" fill="#6b7280">Base: granos y verduras</text>
+            <text x="100" y="110" font-size="11" text-anchor="middle" fill="#6b7280">Frutas</text>
+            <text x="100" y="85" font-size="11" text-anchor="middle" fill="#6b7280">Proteínas</text>
+            <text x="100" y="60" font-size="11" text-anchor="middle" fill="#6b7280">Grasas saludables</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel callout">
+      <div style="font-size:40px">💡</div>
+      <div>
+        <p><strong>Te enseñamos</strong> a cuidar de tu salud cuidando la forma en la que te alimentas. Talleres, retos y guías fáciles para empezar hoy.</p>
+      </div>
+      <div style="margin-left:auto">
+        <button class="cta" onclick="alert('¡Bienvenido! Próximamente más contenido 😊')">Click aquí</button>
+      </div>
+    </section>
+
+    <div class="section-title">
+      <h2>Galería de ideas</h2>
+      <span class="chip">inspiración visual</span>
+    </div>
+    <section class="gallery">
+      <img src="https://plus.unsplash.com/premium_photo-1664472613567-2176b50ddb28?blend=000000&blend-alpha=10&blend-mode=normal&blend-w=1&crop=faces%2Cedges&h=630&mark=https:%2F%2Fimages.unsplash.com%2Fopengraph%2Flogo.png&mark-align=top%2Cleft&mark-pad=50&mark-w=64&w=1200&auto=format&fit=crop&q=60&ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzA0OTU0NDcyfA&ixlib=rb-4.0.3" alt="Tarta de frutas fresca" />
+      <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1200&auto=format&fit=crop" alt="Desayuno con panqueques" />
+      <img src="https://images.unsplash.com/photo-1495546968767-f0573cca821e?q=80&w=1200&auto=format&fit=crop" alt="Ensalada verde" />
+      <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=1200&auto=format&fit=crop" alt="Ingredientes saludables" />
+      <img src="https://tse2.mm.bing.net/th/id/OIP.kvYIHCHNZH-WJY7d3IZPCwHaLH?r=0&rs=1&pid=ImgDetMain&o=7&rm=3" alt="Mesa con frutas" />
+    </section>
+
+    <footer>
+      © 2025 Tutorías de Alimento · Hecho con ❤ para aprender a comer mejor
+    </footer>
+  </main>
+</body>
+</html>
