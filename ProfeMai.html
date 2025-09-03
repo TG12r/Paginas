@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profe Mai - Aula Virtual</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f9fafc;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    /* ---- Navbar ---- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #1e3a8a;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    nav h2 {
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #facc15;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+    }
+
+    /* ---- Header ---- */
+    header {
+      background: linear-gradient(120deg, #2563eb, #1d4ed8);
+      color: #fff;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      overflow: hidden;
+      margin-top: 60px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      animation: fadeDown 1s ease forwards;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeUp 1.5s ease forwards;
+    }
+
+    /* ---- Secciones ---- */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      position: relative;
+      color: #1e3a8a;
+    }
+
+    .section-title::after {
+      content: "";
+      width: 60px;
+      height: 4px;
+      background: #2563eb;
+      display: block;
+      margin: 0.8rem auto;
+      border-radius: 5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      text-align: center;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      color: #2563eb;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    /* ---- Sobre mí ---- */
+    .about {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .about img {
+      width: 280px;
+      border-radius: 50%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .about div {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .about h3 {
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
+
+    /* ---- Testimonios ---- */
+    .testimonial {
+      background: #fff;
+      border-left: 5px solid #2563eb;
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      font-style: italic;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .testimonial strong {
+      display: block;
+      margin-top: 1rem;
+      font-style: normal;
+      color: #1e3a8a;
+    }
+
+    /* ---- FAQ ---- */
+    .faq {
+      margin-top: 2rem;
+    }
+
+    details {
+      background: #fff;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    details summary {
+      font-weight: 600;
+      color: #2563eb;
+    }
+
+    /* ---- Contacto ---- */
+    form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 1rem;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      max-width: 600px;
+      margin: auto;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    form button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    form button:hover {
+      background: #1d4ed8;
+    }
+
+    /* ---- Frase ---- */
+    .frase {
+      text-align: center;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: #1e3a8a;
+      margin: 3rem 0;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.7s ease;
+    }
+
+    /* ---- Footer ---- */
+    footer {
+      background: #1e3a8a;
+      color: #fff;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    footer h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #facc15;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    /* ---- Animaciones ---- */
+    @keyframes fadeDown {
+      from {opacity: 0; transform: translateY(-30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .show {
+      opacity: 1 !important;
+      transform: translateY(0) !important;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <h2>👩‍🏫 Profe Mai</h2>
+    <ul>
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#recursos">Recursos</a></li>
+      <li><a href="#actividades">Actividades</a></li>
+      <li><a href="#testimonios">Testimonios</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1>Aula Virtual de Profe Mai</h1>
+    <p>Un espacio profesional para aprender, jugar y crecer juntos</p>
+  </header>
+
+  <!-- Sobre mí -->
+  <section id="sobre">
+    <h2 class="section-title">👩‍🏫 Sobre mí</h2>
+    <div class="about">
+      <img src="https://tg12r.github.io/Paginas/Darly.jpg" alt="Profe Mai">
+      <div>
+        <h3>¡Hola! Soy Profe Mai</h3>
+        <p>
+          Soy docente apasionada por la enseñanza y la creatividad. Mi misión es 
+          guiar a los estudiantes en su aprendizaje, potenciando sus talentos 
+          a través de la lectura, escritura y el arte. Creo firmemente que la 
+          educación debe ser divertida, significativa y capaz de dejar huellas 
+          en el corazón.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recursos -->
+  <section id="recursos">
+    <h2 class="section-title">📚 Recursos</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Lengua y Literatura</h3>
+        <p>Lecturas, análisis de textos y comprensión lectora para fortalecer habilidades.</p>
+      </div>
+      <div class="card">
+        <h3>Escritura Creativa ✍️</h3>
+        <p>Ejercicios prácticos para desarrollar imaginación y expresión escrita.</p>
+      </div>
+      <div class="card">
+        <h3>Arte y Creatividad 🎨</h3>
+        <p>Actividades artísticas para estimular la creatividad y la innovación.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Actividades -->
+  <section id="actividades">
+    <h2 class="section-title">✨ Actividades</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Calendario de Clases</h3>
+        <p>Organiza tu aprendizaje con un calendario interactivo de clases virtuales.</p>
+      </div>
+      <div class="card">
+        <h3>Retos Semanales 🏆</h3>
+        <p>Desafíos educativos y creativos con recompensas motivadoras.</p>
+      </div>
+      <div class="card">
+        <h3>Proyectos Grupales 🤝</h3>
+        <p>Trabajos colaborativos para fomentar el trabajo en equipo y la comunicación.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section id="testimonios">
+    <h2 class="section-title">💬 Testimonios</h2>
+    <div class="grid">
+      <div class="testimonial"> 
+        "Mi hija ha mejorado muchísimo en su escritura gracias a las actividades de la profe Mai."
+        <strong>- Laura G.</strong>
+      </div>
+      <div class="testimonial"> 
+        "Las clases son dinámicas y divertidas, mi hijo espera con ansias cada sesión."
+        <strong>- Carlos P.</strong>
+      </div>
+      <div class="testimonial"> 
+        "Excelente acompañamiento pedagógico y humano."
+        <strong>- Mariana R.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <h2 class="section-title">❓ Preguntas Frecuentes</h2>
+    <div class="faq">
+      <details>
+        <summary>¿Las clases son en vivo o grabadas?</summary>
+        <p>Ofrecemos ambas modalidades: en vivo para mayor interacción y grabadas para repaso.</p>
+      </details>
+      <details>
+        <summary>¿Qué necesito para participar?</summary>
+        <p>Un dispositivo con internet y muchas ganas de aprender. Todo lo demás lo ponemos nosotros.</p>
+      </details>
+      <details>
+        <summary>¿Hay costo de inscripción?</summary>
+        <p>No, la inscripción es gratuita. Solo pagas por los módulos o clases que tomes.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- Frase -->
+  <p class="frase">“Educar es dejar huellas en el corazón de los niños” ❤️</p>
+
+  <!-- Contacto -->
+  <section id="contacto">
+    <h2 class="section-title">📧 Contacto</h2>
+    <form>
+      <input type="text" placeholder="Tu nombre" required>
+      <input type="email" placeholder="Tu correo" required>
+      <textarea rows="5" placeholder="Escribe tu mensaje aquí..." required></textarea>
+      <button type="submit">Enviar mensaje</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3>Sígueme en mis redes</h3>
+    <div class="footer-links">
+      <a href="#">🌐 Facebook</a>
+      <a href="#">📸 Instagram</a>
+      <a href="#">🐦 Twitter</a>
+    </div>
+    <p style="margin-top:1rem; font-size:0.9rem;">© 2025 Profe Mai - Todos los derechos reservados</p>
+  </footer>
+
+  <script>
+    // Animaciones de aparición al hacer scroll
+    const elements = document.querySelectorAll('.card, .frase, .testimonial');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, {threshold: 0.2});
+
+    elements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
