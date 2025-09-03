@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolce Vita</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffe0f7 0%, #fff6fa 100%);
+            min-height: 100vh;
+            color: #6d3b47;
+        }
+        header {
+            background: linear-gradient(120deg, #ffd6e0 0%, #ffe0f7 100%);
+            padding: 40px 0 30px 0;
+            text-align: center;
+            box-shadow: 0 4px 24px rgba(255,182,185,0.13);
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            position: relative;
+            animation: fadeDownCute 1.2s cubic-bezier(.77,0,.175,1) both;
+        }
+        @keyframes fadeDownCute {
+            0% { opacity: 0; transform: translateY(-40px) scale(0.96);}
+            100% { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        .logo {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 18px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 24px rgba(255,182,185,0.22);
+            border: 4px dashed #ffb6b9;
+            animation: bounceInCute 1s cubic-bezier(.77,0,.175,1) both;
+        }
+        .logo img {
+            width: 60px;
+            height: 60px;
+        }
+        @keyframes bounceInCute {
+            0% { opacity: 0; transform: scale(0.7);}
+            70% { opacity: 1; transform: scale(1.08);}
+            100% { opacity: 1; transform: scale(1);}
+        }
+        header h1 {
+            font-family: 'Pacifico', cursive;
+            font-size: 3rem;
+            margin: 0;
+            color: #ff6f91;
+            text-shadow: 0 2px 12px #ffe0f7;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            animation: fadeTextCute 1.2s 0.3s both;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            color: #b97a95;
+            animation: fadeTextCute 1.2s 0.6s both;
+        }
+        @keyframes fadeTextCute {
+            0% { opacity: 0; transform: translateY(20px);}
+            100% { opacity: 1; transform: translateY(0);}
+        }
+        .enlaces {
+            background: linear-gradient(90deg, #ffb6b9 60%, #ffd6e0 100%);
+            padding: 10px 0;
+            text-align: right;
+            padding-right: 15vw;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            box-shadow: 0 2px 8px rgba(255,182,185,0.10);
+        }
+        .enlaces a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s;
+            font-size: 1.08rem;
+            padding: 4px 10px;
+            border-radius: 8px;
+            background: transparent;
+        }
+        .enlaces a:hover {
+            background: #ffe0f7;
+            color: #ff6f91;
+            text-decoration: none;
+        }
+        .productos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 34px;
+            padding: 48px 12px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .producto {
+            background: #fff;
+            border-radius: 28px;
+            border: 2.5px solid #ffd6e0;
+            box-shadow: 0 8px 32px rgba(255,182,185,0.18);
+            width: 220px;
+            text-align: center;
+            padding: 24px 16px;
+            transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px) scale(0.96);
+            animation: productoFadeIn 1s cubic-bezier(.77,0,.175,1) forwards;
+        }
+        .producto:nth-child(1) { animation-delay: 0.3s;}
+        .producto:nth-child(2) { animation-delay: 0.45s;}
+        .producto:nth-child(3) { animation-delay: 0.6s;}
+        .producto:nth-child(4) { animation-delay: 0.75s;}
+        .producto:nth-child(5) { animation-delay: 0.9s;}
+        .producto:nth-child(6) { animation-delay: 1.05s;}
+        .producto:nth-child(7) { animation-delay: 1.2s;}
+        .producto:nth-child(8) { animation-delay: 1.35s;}
+        @keyframes productoFadeIn {
+            0% { opacity: 0; transform: translateY(40px) scale(0.96);}
+            80% { opacity: 1; transform: translateY(-8px) scale(1.04);}
+            100% { opacity: 1; transform: translateY(0) scale(1);}
+        }
+        .producto:hover {
+            transform: translateY(-10px) scale(1.06) rotate(-2deg);
+            box-shadow: 0 16px 40px rgba(255,182,185,0.28);
+            border-color: #ffb6b9;
+            background: linear-gradient(120deg, #fff6fa 80%, #ffe0f7 100%);
+        }
+        .producto img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 14px;
+            border: 4px solid #ffd6e0;
+            box-shadow: 0 2px 12px #ffe0f7;
+            transition: transform 0.3s;
+        }
+        .producto:hover img {
+            transform: scale(1.12) rotate(-6deg);
+        }
+        .producto h2 {
+            font-size: 1.1rem;
+            margin: 0 0 8px 0;
+            color: #ff6f91;
+            font-family: 'Pacifico', cursive;
+            font-size: 1.18rem;
+            margin-bottom: 6px;
+            text-shadow: 0 2px 8px #ffe0f7;
+        }
+        .producto p {
+            font-size: 0.95rem;
+            margin: 0;
+            color: #b97a95;
+            margin-bottom: 18px;
+        }
+        .btn-comprar {
+            display: inline-block;
+            background: linear-gradient(90deg, #ffb6b9 60%, #ffd6e0 100%);
+            color: #fff;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            border-radius: 18px;
+            padding: 10px 28px;
+            margin-top: 8px;
+            box-shadow: 0 2px 8px rgba(255,182,185,0.18);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+            outline: none;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .btn-comprar:hover {
+            background: linear-gradient(90deg, #ffe0f7 60%, #ffb6b9 100%);
+            color: #ff6f91;
+            transform: scale(1.08) translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255,182,185,0.22);
+        }
+        .btn-comprar:active {
+            transform: scale(0.97);
+        }
+        footer {
+            background: linear-gradient(90deg, #ffd6e0 0%, #ffb6b9 100%);
+            color: #fff;
+            text-align: center;
+            padding: 18px 0;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-top: 40px;
+            font-family: 'Quicksand', sans-serif;
+            border-top-left-radius: 18px;
+            border-top-right-radius: 18px;
+            box-shadow: 0 -2px 8px rgba(255,182,185,0.10);
+        }
+        @media (max-width: 700px) {
+            header {
+                height: 28vh;
+                padding: 28px 0 18px 0;
+                border-bottom-left-radius: 18px;
+                border-bottom-right-radius: 18px;
+            }
+            .logo {
+                width: 60px; height: 60px;
+                border-width: 2.5px;
+            }
+            .logo img {
+                width: 44px; height: 44px;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            .productos {
+                gap: 18px;
+                padding: 18px 6px;
+            }
+            .producto {
+                width: 98vw;
+                max-width: 320px;
+                padding: 16px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="enlaces">
+        <a href="#inicio">Inicio</a>
+        <a href="#productos">Productos</a>
+    </div>
+    <header id="inicio">
+        <div class="logo">
+            <img src="https://cdn-icons-png.flaticon.com/512/4508/4508219.png" alt="Logo genérico">
+        </div>
+        <h1>Dolce Vita</h1>
+        <p>¡Endulza tu vida con nuestros dulces irresistibles!</p>
+    </header>
+    <section class="productos" id="productos">
+        <div class="producto">
+            <img src="https://images.unsplash.com/photo-1617627191898-1408bf607b4d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z29taXRhc3xlbnwwfHwwfHx8MA%3D%3D" alt="Gomitas">
+            <h2>Gomitas Frutales</h2>
+            <p>Suaves, coloridas y llenas de sabor a fruta.</p>
+            <button class="btn-comprar">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="https://images.unsplash.com/photo-1610450949065-1f2841536c88?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2hvY29sYXRlfGVufDB8fDB8fHww" alt="Chocolates">
+            <h2>Chocolates</h2>
+            <p>Deliciosos bombones y tabletas artesanales.</p>
+            <button class="btn-comprar">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="https://plus.unsplash.com/premium_photo-1663853120656-82f3842928f4?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y2FyYW1lbG9zfGVufDB8fDB8fHww" alt="Caramelos">
+            <h2>Caramelos</h2>
+            <p>Clásicos caramelos duros y suaves para todos los gustos.</p>
+            <button class="btn-comprar">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="https://images.unsplash.com/photo-1518646455738-c17d10184f5e?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFyc2htZWxsb3dzfGVufDB8fDB8fHww" alt="Malvaviscos">
+            <h2>Malvaviscos</h2>
+            <p>Esponjosos y perfectos para compartir.</p>
+            <button class="btn-comprar">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="https://img.freepik.com/foto-gratis/vista-superior-postre-turron_23-2149514359.jpg?semt=ais_hybrid&w=740&q=80" alt="Turrón">
+            <h2>Turrón</h2>
+            <p>Tradicional turrón de almendra y miel, crujiente y dulce.</p>
+            <button class="btn-comprar">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="https://images.unsplash.com/photo-1517093157656-b9eccef91cb1?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGFsZXRhcyUyMGhlbGFkYXN8ZW58MHx8MHx8fDA%3D" alt="Paletas">
+            <h2>Paletas de Caramelo</h2>
+            <p>Coloridas paletas para disfrutar en cualquier momento.</p>
+            <button class="btn-comprar">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="https://plus.unsplash.com/premium_photo-1667621220861-5f297728dd39?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Y29va2llfGVufDB8fDB8fHww" alt="Galletas">
+            <h2>Galletas Decoradas</h2>
+            <p>Galletas artesanales decoradas con glaseado y amor.</p>
+            <button class="btn-comprar">Comprar</button>
+        </div>
+        <div class="producto">
+            <img src="https://plus.unsplash.com/premium_photo-1667031518595-9cb4b0d504ef?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8dHJ1ZmFzfGVufDB8fDB8fHww" alt="Trufas">
+            <h2>Trufas</h2>
+            <p>Pequeñas delicias de chocolate rellenas de sabores únicos.</p>
+            <button class="btn-comprar">Comprar</button>
+        </div>
+    </section>
+    <footer>
+        @2025 - Dolce Vita
+    </footer>
+</body>
+</html>
